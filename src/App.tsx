@@ -4,19 +4,24 @@ import classNames from "classnames/bind";
 
 import styles from "./App.module.scss";
 
-import FullScreenMessage from "./components/shared/FullScreenMessage";
+import FullScreenMessage from "@shared/FullScreenMessage";
+import Heading from "./components/sections/Heading";
+import Video from "./components/sections/Video";
+
+import { Wedding } from "@models/wedding";
+import ImageGallery from "./components/sections/ImageGallery";
 
 const cx = classNames.bind(styles);
 
 function App() {
-  const [wedding, setWedding] = useState(null);
+  const [wedding, setWedding] = useState<Wedding | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
 
-    fetch("http://localhost:8888/wedding22")
+    fetch("http://localhost:8888/wedding")
       .then((response) => {
         if (response.ok === false) {
           throw new Error("청접장 정보를 불러오지 못했습니다.");
@@ -36,14 +41,27 @@ function App() {
       });
   }, []);
 
-  if (loading === false) {
+  if (loading) {
     return <FullScreenMessage type="loading" />;
   }
 
   if (error) {
     return <FullScreenMessage type="error" />;
   }
-  return <div className={cx("container")}></div>;
+
+  if (wedding == null) {
+    return null;
+  }
+
+  const { date, galleryImages } = wedding;
+
+  return (
+    <div className={cx("container")}>
+      <Heading date={date} />
+      <Video />
+      <ImageGallery images={galleryImages} />
+    </div>
+  );
 }
 
 export default App;
