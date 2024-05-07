@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Text({ children }: { children: string }) {
-  const message = children.split("|n").map((str, idx, array) => {
+  const message = children.split("\n").map((str, idx, array) => {
     return (
       <React.Fragment key={idx}>
         {str}

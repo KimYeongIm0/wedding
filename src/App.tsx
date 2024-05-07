@@ -11,6 +11,9 @@ import Intro from "./components/sections/Intro";
 
 import { Wedding } from "@models/wedding";
 import ImageGallery from "./components/sections/ImageGallery";
+import Invitaiotn from "./components/sections/Invitaiotn";
+import Calendar from "./components/sections/Calendar";
+import Map from "./components/sections/Map";
 
 const cx = classNames.bind(styles);
 
@@ -60,7 +63,7 @@ function App() {
     groom,
     bride,
     location,
-    message: { intro },
+    message: { intro, invitation },
   } = wedding;
 
   return (
@@ -74,7 +77,10 @@ function App() {
         date={date}
         message={intro}
       />
+      <Invitaiotn message={invitation} />
       <ImageGallery images={galleryImages} />
+      <Calendar date={date} />
+      <Map />
     </div>
   );
 }
