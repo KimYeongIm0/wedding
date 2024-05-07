@@ -22,6 +22,7 @@
     "src",
     "tsconfig.path.json",
     "tsconfig.paths.json",
-    "craco.config.js"
+    "craco.config.js",
+    "images.d.ts"
   ]
 }
