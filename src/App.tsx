@@ -8,6 +8,7 @@ import FullScreenMessage from "@shared/FullScreenMessage";
 import Heading from "./components/sections/Heading";
 import Video from "./components/sections/Video";
 import Intro from "./components/sections/Intro";
+import Share from "./components/sections/Share";
 
 import { Wedding } from "@models/wedding";
 import ImageGallery from "./components/sections/ImageGallery";
@@ -83,6 +84,7 @@ function App() {
       <Calendar date={date} />
       <Map location={location} />
       <Contact groom={groom} bride={bride} />
+      <Share groomName={groom.name} brideName={bride.name} date={date} />
     </div>
   );
 }
