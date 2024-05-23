@@ -14,6 +14,7 @@ import ImageGallery from "./components/sections/ImageGallery";
 import Invitaiotn from "./components/sections/Invitaiotn";
 import Calendar from "./components/sections/Calendar";
 import Map from "./components/sections/Map";
+import Contact from "./components/sections/Contact";
 
 const cx = classNames.bind(styles);
 
@@ -80,7 +81,8 @@ function App() {
       <Invitaiotn message={invitation} />
       <ImageGallery images={galleryImages} />
       <Calendar date={date} />
-      <Map />
+      <Map location={location} />
+      <Contact groom={groom} bride={bride} />
     </div>
   );
 }
