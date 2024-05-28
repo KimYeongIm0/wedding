@@ -1,26 +1,19 @@
+import { Wedding } from "@/components/models/wedding";
+import { getWedding } from "@/api/wedding";
+import { useQuery } from "react-query";
+
 function useWedding() {
-  useEffect(() => {
-    setLoading(true);
+  const { data, isLoading, error } = useQuery<Wedding>(["wedding"], () =>
+    getWedding().then((response) => {
+      if (response.ok === false) {
+        throw new Error("청접장 정보를 불러오지 못했습니다.");
+      }
 
-    getWedding()
-      .then((response) => {
-        if (response.ok === false) {
-          throw new Error("청접장 정보를 불러오지 못했습니다.");
-        }
+      return response.json();
+    })
+  );
 
-        return response.json();
-      })
-      .then((data) => {
-        setWedding(data);
-      })
-      .catch((e) => {
-        console.log(e);
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  return { wedding: data, isLoading };
 }
 
 export default useWedding;

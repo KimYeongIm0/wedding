@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 import classNames from "classnames/bind";
 
 import styles from "./App.module.scss";
@@ -21,9 +19,9 @@ import useWedding from "./hooks/useWedding";
 const cx = classNames.bind(styles);
 
 function App() {
-  const { wedding, loading, error } = useWedding();
+  const { wedding, isLoading, error } = useWedding();
 
-  if (loading) {
+  if (isLoading) {
     return <FullScreenMessage type="loading" />;
   }
 
