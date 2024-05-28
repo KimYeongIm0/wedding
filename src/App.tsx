@@ -8,7 +8,6 @@ import Video from "./components/sections/Video";
 import Intro from "./components/sections/Intro";
 import Share from "./components/sections/Share";
 
-import { Wedding } from "@models/wedding";
 import ImageGallery from "./components/sections/ImageGallery";
 import Invitaiotn from "./components/sections/Invitaiotn";
 import Calendar from "./components/sections/Calendar";
@@ -19,11 +18,7 @@ import useWedding from "./hooks/useWedding";
 const cx = classNames.bind(styles);
 
 function App() {
-  const { wedding, isLoading, error } = useWedding();
-
-  if (isLoading) {
-    return <FullScreenMessage type="loading" />;
-  }
+  const { wedding, error } = useWedding();
 
   if (error) {
     return <FullScreenMessage type="error" />;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClientProvider, QueryClient } from "react-query";
 
 import "./scss/global.scss";
+import FullScreenMessage from "./components/shared/FullScreenMessage";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Suspense fallback={<FullScreenMessage type="loading" />}>
+        <App />
+      </Suspense>
     </QueryClientProvider>
   </React.StrictMode>
 );
